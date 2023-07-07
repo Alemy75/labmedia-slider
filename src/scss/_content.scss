@@ -1,0 +1,20 @@
+.content {
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 65px);
+    text-align: center;
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        text-align: left;
+    }
+    &__button {
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+    &__lines {
+        position: absolute;
+        bottom: 0;
+    }
+}

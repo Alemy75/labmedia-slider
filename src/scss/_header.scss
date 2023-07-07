@@ -1,0 +1,26 @@
+.header {
+    height: 65px;
+    width: 100%;
+    position: relative;
+    &-button {
+        all: unset;
+        display: flex;
+        flex-direction: column;
+        padding: 6.5px 3px;
+        & div {
+            display: flex;
+            width: 26px;
+            height: 3px;
+            &:not(:last-child) {
+                margin-bottom: 5px;
+            }
+        }
+        &__button {
+            margin-right: 28px;
+        }
+    }
+    &__lines {
+        bottom: -1;
+    }   
+}
+

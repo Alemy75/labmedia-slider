@@ -1,0 +1,94 @@
+.slider {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    &-line {
+        display: flex;
+        align-items: center;
+        transition: all 1s;
+        height: 100%;
+    }
+    &-content {
+        display: flex;
+        // justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 338px;
+        border: 1px solid #cccccc;
+        border-radius: 10px 10px 0 0;
+        position: relative;
+        overflow: hidden;
+        &__slide {
+            display: block;
+            border-radius: 10px 10px 0 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 1s ease;
+            flex-direction: column;
+            text-align: center;
+            p {
+                width: 50%;
+            }
+        }
+    }
+    &-buttons {
+        display: flex;
+        height: 40px;
+        background-color: #e9262d;
+        width: 100%;
+        border: 1px solid #e9262d;
+        border-radius: 0 0 10px 10px;
+        & span,
+        button {
+            all: unset;
+            display: flex;
+            width: 33.3333%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        & button {
+            & svg {
+                transition: all 0.5s ease;
+            }
+            opacity: 1;
+            cursor: pointer;
+            &:hover {
+                & svg {
+                    opacity: 0.4;
+                }
+            }
+        }
+        &__left {
+            & svg {
+                transform: rotate(180deg);
+            }
+        }
+        &__dots {
+            & .dot {
+                all: unset;
+                display: inline-block;
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background-color: white;
+                opacity: 0.4;
+                cursor: pointer;
+                transition: all 0.1s ease-in-out;
+                &:not(:last-child) {
+                    margin-right: 4px;
+                }
+                &:hover {
+                    opacity: 1;
+                }
+                &_active {
+                    opacity: 1;
+                    width: 9px;
+                    height: 9px;
+                }
+            }
+        }
+    }
+}
