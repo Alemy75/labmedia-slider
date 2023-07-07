@@ -1,22 +1,24 @@
 const slides = document.querySelectorAll('.slider-content__slide')
 const sliderLine = document.querySelector('.slider-line')
-const sliderDots = document.querySelectorAll('.dot')
 const sliderBtnNext = document.querySelector('.slider-buttons__right')
 const sliderBtnPrev = document.querySelector('.slider-buttons__left')
 const button = document.getElementById('button')
+const dots = document.getElementById('dots')
 
 class Slider {
     constructor() {
         this.slides = slides
         this.sliderLine = sliderLine
-        this.sliderDots = sliderDots
+        this.sliderDots = []
         this.sliderBtnNext = sliderBtnNext
         this.sliderBtnPrev = sliderBtnPrev
         this.button = button
+        this.dots = dots
 
         this.sliderCount = 0
         this.sliderWidth = 0
 
+        this.renderDots()
         window.addEventListener('resize', this.showSlide.bind(this))
         this.sliderBtnNext.addEventListener('click', this.nextSlide.bind(this))
         this.sliderBtnPrev.addEventListener('click', this.prevSlide.bind(this))
@@ -30,6 +32,21 @@ class Slider {
         })
 
         this.showSlide()
+        
+    }
+
+    renderDots() {
+        let dotsHtml = ''
+        this.slides.forEach((_, index) => {
+            if (index === 0) {
+                dotsHtml += '<button class="dot dot_active"></button>'
+            } else {
+                dotsHtml += '<button class="dot"></button>'
+            }
+        })
+        console.log(dotsHtml)
+        this.dots.innerHTML = dotsHtml
+        this.sliderDots = document.querySelectorAll('.dot')
     }
 
     showSlide() {
@@ -71,7 +88,7 @@ class Slider {
     }
 
     setButtonActive() {
-        if (this.sliderCount === 5) {
+        if (this.sliderCount === this.slides.length - 1) {
             this.button.classList.remove('button_disabled')
         }
     }
