@@ -15,6 +15,8 @@ class Slider {
         this.button = button
         this.dots = dots
 
+        this.unclickedSlides = [...Array(this.slides.length)].map((_, index) => index)
+        this.unclickedSlides.shift()
         this.sliderCount = 0
         this.sliderWidth = 0
 
@@ -50,7 +52,6 @@ class Slider {
 
         this.rollSlider()
         this.thisSlide(this.sliderCount)
-        this.setButtonActive()
     }
 
     prevSlide() {
@@ -59,7 +60,6 @@ class Slider {
 
         this.rollSlider()
         this.thisSlide(this.sliderCount)
-        this.setButtonActive()
     }
 
     rollSlider() {
@@ -68,12 +68,15 @@ class Slider {
     }
 
     thisSlide(index) {
+        this.unclickedSlides = this.unclickedSlides.filter(slide => slide != index)
         this.sliderDots.forEach(item => item.classList.remove('dot_active'))
         this.sliderDots[index].classList.add('dot_active')
+        console.log(this.unclickedSlides)
+        this.setButtonActive()
     }
 
     setButtonActive() {
-        if (this.sliderCount === this.slides.length - 1) {
+        if (this.unclickedSlides.length == 0) {
             this.button.classList.remove('button_disabled')
         }
     }
@@ -87,9 +90,7 @@ class Slider {
                 dotsHtml += '<button class="dot"></button>'
             }
         })
-        console.log(dotsHtml)
         this.dots.innerHTML = dotsHtml  
-        
         this.sliderDots = document.querySelectorAll('.dot')
     }
 }
